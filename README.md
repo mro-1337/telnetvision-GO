@@ -1,8 +1,9 @@
-this is a go implementation of 
+This is a go lang implementation of 
 https://github.com/hmderdoc/telnetvision
-Thank to the original authors and contributers.
-Thanks to the ffmpeg author (and many many other t hings) Fabrice Bellard
-Also, thanks to rick parrish for ftelnet which is used for the web player
+
++ Thank to the original authors and contributers.
++ Thanks to the ffmpeg author (and many many other things) Fabrice Bellard
++ Also, thanks to rick parrish for ftelnet which is used for the web player
 
 This is real easy to setup.  don't be scared.  
 make sure you have ffmpeg installed
