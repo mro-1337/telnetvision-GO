@@ -3,7 +3,7 @@ CREDITS - WHERE THE CODE CAME FROM
 
 Telnetvision for Windows is built on two projects:
 
-  Telnetvision      by Alex Mowery (hmderdoc), MIT License
+  Telnetvision      by  (hmderdoc), MIT License
                     https://github.com/hmderdoc/telnetvision
                     Includes the shadecell and termprobe libraries (MIT,
                     same author).
