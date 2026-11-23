@@ -16,6 +16,7 @@ WHAT'S HERE
   build.sh           The same, for building on Linux or macOS.
   README-SOURCE.txt  This file.
   CREDITS.txt        Where the code came from, line counts, licenses.
+  CHANGES.txt        What's new in each version.
 
   producer\          telnetvision.exe - the camera-PC program. Plays files,
                      folders, cameras, capture cards, one screen or all
@@ -24,13 +25,15 @@ WHAT'S HERE
                      by ytcache.go, sound fetched by webstream.go) and music
                      with a visualizer (viz.go, vizsource.go) through ffmpeg,
                      shrinks the picture for terminals and sends picture,
-                     sound and captions to the server. Plain Go, no
+                     sound and captions to the server, and JPEG XL
+                     pictures (jxl.go; fetches an ffmpeg that can make
+                     them if needed, ffmpegget.go). Plain Go, no
                      libraries.
 
   tvserver\          tvserver.exe - the server viewers connect to:
                        - telnet viewers (SyncTERM, IcyTerm, NetRunner, ...)
                        - the web viewer (built-in web server, fTelnet)
-                       - SyncTERM sound, sixel pictures, the per-viewer
+                       - SyncTERM sound, sixel and JPEG XL pictures, the per-viewer
                          S menu, remembered viewer settings, door_port for
                          a real BBS
                      The picture and sound code comes from the original
@@ -38,7 +41,9 @@ WHAT'S HERE
     tvserver\web\    The web viewer. It's built into tvserver.exe at
                      compile time, so changes here need a rebuild.
                        index.html        the page
-                       tvaudio.js        sound and sixel for browsers
+                       tvaudio.js        sound, sixel and JPEG XL for browsers
+                       jxl\              jSquash JPEG XL decoder (WebAssembly),
+                                         unchanged, for browsers without one
                        ftelnet\          fTelnet (patched), fonts, keyboard
                        patch-ftelnet.py  the changes made to fTelnet
 
@@ -57,6 +62,10 @@ WHAT'S HERE
                      is release\ftelnet.norip.noxfer.js with
                      patch-ftelnet.py applied.
 
+  third-party\jSquash\
+                     The license of the jSquash JPEG XL decoder in
+                     tvserver\web\jxl (npm package @jsquash/jxl 1.3.0).
+
   third-party\telnetvision-upstream\
                      The original Telnetvision repository as it was used
                      (Python producer, Go door and service, docs), kept for
@@ -65,6 +74,7 @@ WHAT'S HERE
   docs\              User documentation and example settings:
                        README-USER-Win32.txt / README-USER-Win64.txt
                                          the README from the release zips
+                       LICENSE.txt       the license notes in the release zips
                        telnetvision.ini.example
                        door.ini.example, BBS-DOOR-INSTALL.md
                                          for the BBS door

@@ -3,7 +3,7 @@ CREDITS - WHERE THE CODE CAME FROM
 
 Telnetvision for Windows is built on two projects:
 
-  Telnetvision      by  (hmderdoc), MIT License
+  Telnetvision      by hmderdoc, MIT License
                     https://github.com/hmderdoc/telnetvision
                     Includes the shadecell and termprobe libraries (MIT,
                     same author).
@@ -11,6 +11,13 @@ Telnetvision for Windows is built on two projects:
   fTelnet           by Rick Parrish, R&M Software
                     GNU Affero General Public License v3 (AGPL-3.0)
                     (third-party\fTelnet\LICENSE)
+
+  jSquash JPEG XL decoder (libjxl compiled to WebAssembly)
+                    by Jamie Sinclair and Google, Apache License 2.0
+                    https://github.com/jamsinclair/jSquash
+                    (third-party\jSquash\LICENSE). Used unchanged by the
+                    web page, only in browsers that can't show JPEG XL
+                    themselves (tvserver\web\jxl).
 
 Everything else was written new for Telnetvision for Windows.
 
@@ -35,19 +42,20 @@ relay (service.exe, 402 lines plus tests).
 
 Program            Lines   From upstream   What came from it
 -----------------  ------  --------------  ------------------------------
-telnetvision.exe    8,364     0  (0%)     None of the code. It is a new Go
+telnetvision.exe    8,862     0  (0%)     None of the code. It is a new Go
  (producer\)                               program replacing the Python
                                            producer.py, built for Windows.
                                            It speaks upstream's wire format
                                            (wire.py) so it works with the
                                            original door and relay.
 
-tvserver.exe        7,884  2,604 (33%)    The door's picture and sound
+tvserver.exe        8,112  2,604 (32%)    The door's picture and sound
  (tvserver\)                               code, kept in the door_*.go
                                            files (see below). The rest is
                                            new: telnet server, web server
                                            and WebSocket, feed hub,
-                                           compressed feed, sixel, 256-color,
+                                           compressed feed, sixel, JPEG XL,
+                                           256-color,
                                            per-viewer menu and settings,
                                            sound formats, volume, sound
                                            debugging, captions, stats,
@@ -62,12 +70,12 @@ service.exe           402    402 (100%)   All of it, with one word fixed.
 shadecell, termprobe  775    775 (100%)   Unchanged.
  (lib\)
 
-Tests: telnetvision.exe 1,034 lines, all new. tvserver.exe 1,754 lines, of
+Tests: telnetvision.exe 1,215 lines, all new. tvserver.exe 1,921 lines, of
 which 1,330 are the door's tests, carried along with its code.
 door.exe and service.exe keep their upstream tests unchanged.
 
-In total about 13,600 lines of new program code were written:
-telnetvision.exe 8,364 and tvserver.exe 5,280.
+In total about 14,400 lines of new program code were written:
+telnetvision.exe 8,862 and tvserver.exe 5,508.
 
 
 tvserver's door_*.go files in detail
@@ -130,12 +138,12 @@ tvserver\web\ftelnet.
        5. the screen-reader text keeps only the newest 60 lines
        6. a hidden cursor (CSI ?25l) is really hidden
   - The fonts, keyboard files and ftelnet.css are fTelnet's, unchanged.
-  - New, not from fTelnet: tvaudio.js (372 lines: sound, sixel and
-    stream filter), index.html (115 lines) and patch-ftelnet.py
+  - New, not from fTelnet: tvaudio.js (477 lines: sound, sixel, JPEG XL
+    and stream filter), index.html (116 lines) and patch-ftelnet.py
     (137 lines).
 
 So of the web viewer's code, about 6,100 lines are fTelnet's and about
-600 are new.
+730 are new.
 
 
 LICENSES AND WHAT THEY ASK
