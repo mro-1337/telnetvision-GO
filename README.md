@@ -1,7 +1,7 @@
 This is a go lang implementation of 
 https://github.com/hmderdoc/telnetvision
 
-+ Thank to the original authors and contributers.
++ Thanks to the original authors and contributers.
 + Thanks to the ffmpeg author (and many many other things) Fabrice Bellard
 + Also, thanks to rick parrish for ftelnet which is used for the web player
 
