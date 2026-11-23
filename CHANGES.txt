@@ -1,6 +1,84 @@
 TELNETVISION FOR WINDOWS - WHAT'S NEW
 =====================================
 
+VERSION 1.5.0
+-------------
+
+  Jumping around in a video (camera PC)
+    - J: type a time to go to (1:05:00, 45:00, 90 for minutes, 1h30m,
+      or +10 / -5 minutes from here). Left / Right arrow: back / ahead
+      5 minutes (SEEK_STEP). Picture, sound and subtitles all carry on
+      from there; viewers stay connected.
+    - The status line shows where the video is ("12:34 / 1:45:00").
+
+  Re-encoding movies this PC can't decode fast enough (REENCODE=1)
+    - When a movie file plays slower than FPS for several seconds,
+      ffmpeg makes a lighter copy (H.264, 720 pixels wide, AAC sound)
+      from the exact place it had reached, and the movie carries on from
+      there once enough of it is made. Viewers see a please-wait notice
+      with how far along it is.
+    - The copy is a temporary file, deleted when the movie ends or is
+      skipped, and when telnetvision closes (left-over copies are
+      cleared at the next start).
+    - New settings REENCODE, REENCODE_WIDTH, REENCODE_CRF,
+      REENCODE_PRESET, REENCODE_FOLDER.
+
+  The playlist for viewers (L)
+    - A viewer who is the only one watching presses L for a lightbar
+      list of the camera PC's playlist: arrow keys move, Enter plays
+      the highlighted entry now, Space tags it to play next (in the
+      order tagged). No typing. It closes if someone else starts
+      watching. The web page has a Playlist button with on-screen
+      buttons for touch screens.
+    - N on the camera PC plays the tagged entries first.
+
+  Fixes
+    - Option 8 (Auto detail) in the viewers' S menu didn't respond to
+      the 8 key.
+    - The Win64 README's title said "(32-bit)".
+    - Closing the camera window now stops cleanly (ffmpeg, temporary
+      files), as Q does.
+
+
+VERSION 1.4.1
+-------------
+
+  Web page
+    - Full screen really fills the screen now. Before, the picture stayed
+      at its page size (at most 960x575) in the top of the screen; now
+      it's scaled up to the largest size that fits, centred on black.
+    - Double-click the picture to go full screen and back; an "Exit full
+      screen" button sits in the corner (Esc works too).
+    - Phones that can't do full screen for web pages (iPhone) fill the
+      browser window instead.
+
+
+VERSION 1.4.0
+-------------
+
+  JPEG XL detail
+    - JPEG XL viewers pick their detail with S, option 7: High
+      (320x192), Medium (240x144) or Low (160x96, about a third of
+      High's data). The camera PC makes each level only while someone
+      watches at it. New camera PC settings JXL_MEDIUM_WIDTH,
+      JXL_MEDIUM_QUALITY, JXL_LOW_WIDTH, JXL_LOW_QUALITY; new
+      tvserver.ini setting jxl_detail (where viewers start).
+    - Option 7 is now "Detail", for sixel and JPEG XL alike (each keeps
+      its own setting).
+
+  Auto detail
+    - When a sixel or JPEG XL viewer's connection can't keep up, their
+      detail goes down a step by itself (High -> Medium -> Low), with a
+      notice along the top, and back up after 30 seconds of keeping up.
+      It never goes above what the viewer picked. S, option 8 turns it
+      off for a viewer; auto_detail = off in tvserver.ini for everyone.
+    - In a test at 0.3 Mbit/s, a JPEG XL viewer went from 4.5 to 15
+      frames a second.
+
+  Works with 1.3.0: a 1.3.0 camera PC makes High only (the menu says
+  so), and a 1.3.0 tvserver asks a 1.4.0 camera PC for High only.
+
+
 VERSION 1.3.0
 -------------
 

@@ -27,12 +27,16 @@ WHAT'S HERE
                      shrinks the picture for terminals and sends picture,
                      sound and captions to the server, and JPEG XL
                      pictures (jxl.go; fetches an ffmpeg that can make
-                     them if needed, ffmpegget.go). Plain Go, no
-                     libraries.
+                     them if needed, ffmpegget.go), jumping around in
+                     a video (controls.go, player.go), lighter copies of
+                     movies the PC can't decode in time (reencode.go)
+                     and the playlist for viewers (playlistfeed.go).
+                     Plain Go, no libraries.
 
   tvserver\          tvserver.exe - the server viewers connect to:
                        - telnet viewers (SyncTERM, IcyTerm, NetRunner, ...)
                        - the web viewer (built-in web server, fTelnet)
+                       - the viewers' playlist lightbar (playlist.go)
                        - SyncTERM sound, sixel and JPEG XL pictures, the per-viewer
                          S menu, remembered viewer settings, door_port for
                          a real BBS
@@ -78,6 +82,7 @@ WHAT'S HERE
                        telnetvision.ini.example
                        door.ini.example, BBS-DOOR-INSTALL.md
                                          for the BBS door
+                       telnetvision-ad.txt  an ASCII ad for your BBS
 
 
 BUILDING

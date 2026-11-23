@@ -1,0 +1,78 @@
+TELNETVISION FOR WINDOWS - WHAT'S NEW
+=====================================
+
+VERSION 1.3.0
+-------------
+
+  JPEG XL pictures
+    - New Colors choice "JPEG XL" for terminals that can draw JPEG XL
+      (SyncTERM 1.10+ and terminals that copy its commands): real
+      pixels, full colour, sharper than sixel at about half the data.
+    - The server asks each terminal whether it can draw JPEG XL and
+      only offers the choice to those that say yes.
+    - The camera PC makes the pictures once for every JPEG XL viewer,
+      only while somebody watches in JPEG XL. Needs an ffmpeg with
+      libjxl; see the next point.
+    - If the camera PC's ffmpeg can't make JPEG XL, telnetvision.exe
+      downloads one that can, once (about 90 MB, into the ffmpeg-jxl
+      folder next to it), and uses it for the JPEG XL pictures.
+      JXL_DOWNLOAD=0 turns that off.
+    - The web page shows JPEG XL too: with the browser's own decoder
+      when it has one, else with libjxl as WebAssembly (jSquash).
+    - New camera PC settings JXL_WIDTH (320), JXL_QUALITY (75) and
+      JXL_DOWNLOAD (1); new tvserver.ini setting  jxl = on.
+
+
+VERSION 1.2.0
+-------------
+
+Camera PC (telnetvision.exe)
+
+  Screens
+    - SOURCE=screen1, screen2, ... sends one monitor (1 is the main one,
+      then left to right). SOURCE=screen still sends all of them.
+    - SOURCE=window:<part of a title> sends one window.
+    - SOURCE=screen:X,Y,WxH sends any area of the desktop.
+    - telnetvision.exe --list-devices lists the screens with their sizes
+      and positions, and --setup offers each one.
+
+  Music
+    - Songs (mp3, flac, ogg, opus, m4a, wav, wma, ...), folders of music,
+      playlists of songs and internet radio play with a music visualizer
+      as the picture: 12 looks in the spirit of Milkdrop that move with
+      the bass, mids, treble and beats, blending into a new look now and
+      then. V switches to the next look.
+    - Songs' artist and title tags show in viewers' title bar.
+    - SOURCE=visualizer shows the visualizer for the microphone or
+      line-in (AUDIO_SOURCE).
+    - New settings: VISUALIZER (auto, or the look to start on) and
+      VIZ_SECONDS (how often it changes; 0 = only with V).
+
+  YouTube
+    - Each video is downloaded completely before it plays, and the next
+      one downloads while it plays (one at a time), so the network can't
+      interrupt it. Live streams are still streamed. New setting:
+      YOUTUBE_PREFETCH (1 = on, the default).
+    - Works with YouTube's separate picture and sound streams (fixes
+      "Requested format is not available").
+    - Streamed sound is fetched in small pieces with retries, so it no
+      longer cuts out partway ("Error during demuxing: I/O error"); if it
+      does stop, playback picks up again from the same spot.
+    - A link to a video inside a playlist (watch?v=...&list=...) plays
+      the whole playlist, starting from that video.
+    - Clearer advice when YouTube refuses (update yt-dlp, install Deno).
+
+  Sixel
+    - Sixel viewers now get the camera PC's sharp picture every frame.
+      Before, a timing slip meant most frames fell back to the ordinary
+      80-wide picture, so High and Medium detail often looked blocky.
+      For sharper sixel still, set SIXEL_WIDTH=320.
+
+  Keyboard
+    - Paste with Ctrl+V, Shift+Insert or a right-click: what you copied
+      (a YouTube link, a path) goes on the Play line, or into the line
+      you're typing.
+
+Server (tvserver.exe), BBS door (door.exe) and relay (service.exe)
+
+  - No changes apart from the version number.
