@@ -42,14 +42,14 @@ relay (service.exe, 402 lines plus tests).
 
 Program            Lines   From upstream   What came from it
 -----------------  ------  --------------  ------------------------------
-telnetvision.exe   10,005     0  (0%)     None of the code. It is a new Go
+telnetvision.exe   10,596     0  (0%)     None of the code. It is a new Go
  (producer\)                               program replacing the Python
                                            producer.py, built for Windows.
                                            It speaks upstream's wire format
                                            (wire.py) so it works with the
                                            original door and relay.
 
-tvserver.exe        8,711  2,604 (30%)    The door's picture and sound
+tvserver.exe        9,255  2,604 (28%)    The door's picture and sound
  (tvserver\)                               code, kept in the door_*.go
                                            files (see below). The rest is
                                            new: telnet server, web server
@@ -70,12 +70,12 @@ service.exe           402    402 (100%)   All of it, with one word fixed.
 shadecell, termprobe  775    775 (100%)   Unchanged.
  (lib\)
 
-Tests: telnetvision.exe 1,386 lines, all new. tvserver.exe 2,105 lines, of
+Tests: telnetvision.exe 1,590 lines, all new. tvserver.exe 2,202 lines, of
 which 1,330 are the door's tests, carried along with its code.
 door.exe and service.exe keep their upstream tests unchanged.
 
-In total about 16,100 lines of new program code were written:
-telnetvision.exe 10,005 and tvserver.exe 6,107.
+In total about 17,200 lines of new program code were written:
+telnetvision.exe 10,596 and tvserver.exe 6,651.
 
 
 tvserver's door_*.go files in detail
@@ -139,11 +139,11 @@ tvserver\web\ftelnet.
        6. a hidden cursor (CSI ?25l) is really hidden
   - The fonts, keyboard files and ftelnet.css are fTelnet's, unchanged.
   - New, not from fTelnet: tvaudio.js (477 lines: sound, sixel, JPEG XL
-    and stream filter), index.html (191 lines) and patch-ftelnet.py
+    and stream filter), index.html (193 lines) and patch-ftelnet.py
     (137 lines).
 
 So of the web viewer's code, about 6,100 lines are fTelnet's and about
-800 are new.
+810 are new.
 
 
 LICENSES AND WHAT THEY ASK

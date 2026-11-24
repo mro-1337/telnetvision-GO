@@ -1,6 +1,131 @@
 TELNETVISION FOR WINDOWS - WHAT'S NEW
 =====================================
 
+VERSION 1.6.0
+-------------
+
+  Movie night (tvserver)
+    - Viewers press N (or the web page's Movie night button): the picture
+      moves left and a chat opens on the right, shared by everyone on
+      the channel in movie night. They pick a name the first time; each
+      name gets its own random colour. Enter starts a message, Enter
+      sends, Esc cancels. N hides it again. Names, colours and whether
+      it was on are remembered. The server window logs the chat.
+      movie_night = off in tvserver.ini turns it off.
+
+  Cameras (camera PC)
+    - D in the camera window lists the cameras; type a number to switch
+      to one, then Y to save it as the default (SOURCE in
+      telnetvision.ini), any other key to play it just this time.
+
+  Playing something from the command line (camera PC)
+    - telnetvision.exe X:\Movies (or a file, or a URL), or a file or
+      folder dragged onto telnetvision.exe, plays that instead of SOURCE
+      without changing telnetvision.ini. Several: the first plays, the
+      rest join the playlist.
+
+  Both programs changed.
+
+
+VERSION 1.5.6
+-------------
+
+  Fixes
+    - Music broke up (stopping and starting) while a viewer had the
+      playlist (L) open. Two causes, both fixed:
+        - the camera PC sent the whole list - every song's name - to
+          tvserver every 2 seconds, which held up the sound behind it.
+          Now the names go once when the list opens (and again only if
+          they change); after that just what's playing and up next;
+        - tvserver redrew the busy picture (the music visualizer) and
+          the list over it for every frame. Now the picture holds still
+          under the list while it's open; the sound keeps playing.
+    - Both programs changed. (Either one alone helps; both is best.)
+
+
+VERSION 1.5.5
+-------------
+
+  Viewers' playlist on/off (camera PC)
+    - O in the camera window turns the viewers' playlist (their L key)
+      off or on while it runs; VIEWER_PLAYLIST=0 in telnetvision.ini
+      starts with it off. The status line says "viewer list off".
+    - While it's off, viewers pressing L are told "The playlist is
+      turned off on the camera PC", and a list that's open closes.
+    - Both programs changed (a 1.5.0-1.5.4 tvserver says "nothing to
+      pick" instead).
+
+
+VERSION 1.5.4
+-------------
+
+  Fixes (camera PC)
+    - While a big YouTube video downloaded (nothing playing yet), the
+      camera PC sent nothing, so tvserver dropped the feed after a
+      minute and the window said "connection lost (... wrong TOKEN ...)"
+      over and over. Now:
+        - viewers see DOWNLOADING FROM YOUTUBE and how far it's got, in
+          big letters on the last picture, and the status line shows
+          "downloading 45%" first, where it isn't cut off;
+        - whenever there's nothing new to send, the last picture is sent
+          again every 15 seconds, so the link stays up;
+        - "connection lost" now says what actually happened (closed right
+          away: check TOKEN; closed after a quiet minute; or the server
+          restarted / another camera PC took the channel).
+    - Only telnetvision.exe changed.
+
+
+VERSION 1.5.3
+-------------
+
+  Fixes (camera PC)
+    - A re-encoded copy of a 10-bit (HDR, x265) movie could fail to play
+      ("Error opening output files: Invalid argument") and the movie was
+      skipped. Copies are now ordinary 8-bit H.264 (-pix_fmt yuv420p),
+      played without the graphics card, and read with a longer look at
+      their start to find the sound.
+    - If a copy has no sound track, the sound plays from the original
+      file; if a copy won't play at all, the original plays from the
+      same place instead of the movie being skipped.
+    - ffmpeg's error messages now show the reason, not just "Error
+      opening output files".
+    - tvserver.exe didn't change after 1.5.0; in the full 1.5.3 release
+      it's numbered 1.5.3 too, so both programs match.
+
+
+VERSION 1.5.2
+-------------
+
+  Re-encoding (camera PC)
+    - Playback now stops until the whole copy is made, then carries on
+      from the same place. (Before, it started playing the copy while it
+      was still being made, which looked like the original playing on.)
+    - The please-wait notice is now in big letters in the middle of the
+      picture - RE-ENCODING / PLEASE WAIT / 35% - 4 MIN - on the dimmed
+      last picture, for every viewer (characters, sixel, JPEG XL and the
+      web page alike), instead of a caption line at the bottom.
+    - Only telnetvision.exe changed.
+
+
+VERSION 1.5.1
+-------------
+
+  Re-encoding by hand, and a half-size copy (camera PC)
+    - E in the camera window re-encodes the movie that's playing to a
+      temporary file and plays that from the same place: 1 = 720 wide
+      H.264, 2 = half size, 0 = back to the original file.
+    - The 720 copy is made with exactly
+        ffmpeg -i movie -vf scale=720:-2 -c:v libx264 -crf 23 -c:a aac
+      (no more "-preset veryfast" unless REENCODE_PRESET asks for it),
+      and the half-size one with
+        ffmpeg -i movie -vf "scale=iw/2:ih/2" -c:a copy
+      (sound that can't go into the copy as it is becomes AAC).
+    - REENCODE_MODE picks which copy REENCODE=1 makes (720 or half).
+    - A movie that plays from a copy keeps doing so after jumps, and
+      when the playlist comes round to it again.
+    - Only telnetvision.exe changed; tvserver.exe 1.5.0 is current.
+
+
 VERSION 1.5.0
 -------------
 
