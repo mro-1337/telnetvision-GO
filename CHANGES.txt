@@ -1,6 +1,20 @@
 TELNETVISION FOR WINDOWS - WHAT'S NEW
 =====================================
 
+VERSION 1.6.1
+-------------
+
+  Movie night from the camera PC
+    - W in the camera window turns movie night on or off for everyone
+      (viewers still show or hide the chat for themselves with N).
+      MOVIE_NIGHT=0 in telnetvision.ini starts with it off; the status
+      line says "movie night off". While it's off, N tells viewers it's
+      turned off on the camera PC, and open chats close.
+    - The chat shows in the camera window as it happens: messages, and
+      who joins and leaves.
+    - Both programs changed.
+
+
 VERSION 1.6.0
 -------------
 
