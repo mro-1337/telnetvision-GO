@@ -1,6 +1,35 @@
 TELNETVISION FOR WINDOWS - WHAT'S NEW
 =====================================
 
+VERSION 1.6.2
+-------------
+
+  Movie night is now called group chat
+    - Everywhere people see it: the viewers' screen ("GROUP CHAT - 3
+      here"), the hint line, the web page's Group chat button, the
+      camera window and the docs. The keys are the same: N for viewers,
+      W on the camera PC.
+    - The settings are now GROUP_CHAT (telnetvision.ini) and group_chat
+      (tvserver.ini). The old names, MOVIE_NIGHT and movie_night, still
+      work (tvserver renames movie_night in its ini the next time it
+      starts). Viewers' saved names and colours are kept.
+
+  /name in the group chat
+    - Send  /name newname  as a chat message to change your name.
+      Everyone sees "Ann is now called Annie"; the new name is
+      remembered for next time. A name someone else has is refused.
+
+  Ban lists (tvserver)
+    - ipban.txt: addresses that can't watch at all, on telnet or the
+      web page. Someone already watching is cut off within seconds.
+    - chatban.txt: addresses or chat names that can watch and read the
+      chat, but not write in it.
+    - Plain text next to tvserver.ini, one entry a line, # for notes;
+      203.0.113.5, 203.0.113.* and 203.0.113.0/24 all work. Edits take
+      effect within a few seconds, no restart.
+    - Server window commands: ban, unban, chatban, unchatban, bans.
+    - Chat messages in the server log now show the sender's address.
+
 VERSION 1.6.1
 -------------
 

@@ -37,7 +37,8 @@ WHAT'S HERE
                        - telnet viewers (SyncTERM, IcyTerm, NetRunner, ...)
                        - the web viewer (built-in web server, fTelnet)
                        - the viewers' playlist lightbar (playlist.go)
-                       - movie night's chat (chat.go)
+                       - the group chat (chat.go), ipban.txt and
+                         chatban.txt (bans.go)
                        - SyncTERM sound, sixel and JPEG XL pictures, the per-viewer
                          S menu, remembered viewer settings, door_port for
                          a real BBS

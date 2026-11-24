@@ -49,13 +49,14 @@ telnetvision.exe   10,683     0  (0%)     None of the code. It is a new Go
                                            (wire.py) so it works with the
                                            original door and relay.
 
-tvserver.exe        9,313  2,604 (28%)    The door's picture and sound
+tvserver.exe        9,750  2,604 (27%)    The door's picture and sound
  (tvserver\)                               code, kept in the door_*.go
                                            files (see below). The rest is
                                            new: telnet server, web server
                                            and WebSocket, feed hub,
                                            compressed feed, sixel, JPEG XL,
-                                           256-color,
+                                           256-color, playlist, group
+                                           chat, ban lists,
                                            per-viewer menu and settings,
                                            sound formats, volume, sound
                                            debugging, captions, stats,
@@ -70,12 +71,12 @@ service.exe           402    402 (100%)   All of it, with one word fixed.
 shadecell, termprobe  775    775 (100%)   Unchanged.
  (lib\)
 
-Tests: telnetvision.exe 1,611 lines, all new. tvserver.exe 2,211 lines, of
+Tests: telnetvision.exe 1,626 lines, all new. tvserver.exe 2,289 lines, of
 which 1,330 are the door's tests, carried along with its code.
 door.exe and service.exe keep their upstream tests unchanged.
 
-In total about 17,400 lines of new program code were written:
-telnetvision.exe 10,683 and tvserver.exe 6,709.
+In total about 17,800 lines of new program code were written:
+telnetvision.exe 10,683 and tvserver.exe 7,146.
 
 
 tvserver's door_*.go files in detail
